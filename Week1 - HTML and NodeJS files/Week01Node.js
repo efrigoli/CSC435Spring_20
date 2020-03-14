@@ -10,13 +10,14 @@ var fs = require('fs');
 
 // Creating a server
 http.createServer(function (req, res) {
-  console.log(__dirname);
   // Reading the contents of the HTML file
   fs.readFile('Week01HTML.html', function(err, data) {
+    // Writing the response headers
     res.writeHead(200, {'Content-Type': 'text/html'});
-    // Writing the HTMl file's data
+    // Writing the HTMl file's data as a response to the client
     res.write(data);
+    // Ending the response to the client
     res.end();
   });
-// Setting the local port
+// Setting the local port to trigger the function when accessed
 }).listen(8080);
