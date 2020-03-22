@@ -3,30 +3,23 @@ import ReactDOM from 'react-dom';
 import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './index.css';
 import App from './App';
-import Login from './login'
-import Notfound from './notFound'
+import Login from './login';
+import Notfound from './notFound';
+import Header from "./header";
+import Footer from "./footer";
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
   <Router>
     <div>
-      <ul>
-        <li>
-          <NavLink exact activeClassName="active" to="/">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="active" to="/login">
-            Login
-          </NavLink>
-        </li>
-      </ul>
+      <Header />
+      <hr />
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
         <Route component={Notfound} />
       </Switch>
+      <Footer />
     </div>
   </Router>
 )
