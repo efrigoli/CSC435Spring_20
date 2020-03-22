@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
 
-const Notfound = () => <h1>Not found</h1>
+const Notfound = () => <div className="container"><h1>Page Not Found</h1></div>
 
 export default Notfound
