@@ -26,7 +26,7 @@ const pwdPassword = {
 function FormField(props) {
   return (
     <div className="inputContainer">
-      <label for={props.label.for}> {props.label.text} </label>
+      <label htmlFor={props.label.for}> {props.label.text} </label>
       <input
         type={props.type}
         name={props.name}
