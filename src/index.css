@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Lustria|Raleway:300,400,500,600&display=swap');
+/* Elise Frigoli
+ * CSC 435 - Advanced Web App Development
+ * Created: 03/21/20
+ * Last Modified: 03/22/20 - Added Comments */
 
 /* Typography */
+@import url('https://fonts.googleapis.com/css?family=Lustria|Raleway:300,400,500,600&display=swap');
 
 body {
   margin: 0;
