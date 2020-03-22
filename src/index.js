@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import Login from './login'
+import Notfound from './notFound'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
   <Router>
     <div>
-      <Route path="/" component={App} />
+      <ul>
+        <li>
+          <NavLink exact activeClassName="active" to="/">
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="active" to="/login">
+            Login
+          </NavLink>
+        </li>
+      </ul>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
+        <Route component={Notfound} />
+      </Switch>
+      <Route exact path="/" component={App} />
       <Route path="/login" component={Login} />
     </div>
   </Router>
