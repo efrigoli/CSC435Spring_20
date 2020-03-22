@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 function Header() {
   return (
     <header>
-    /*{ Setting up navigation bar, with nav links to route to each page }*/
+    {/* Setting up navigation bar, with nav links to route to each page */}
       <nav>
         <h3>CSC-435</h3>
         <NavLink exact activeClassName="active" to="/">
