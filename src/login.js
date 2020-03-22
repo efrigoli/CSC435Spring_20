@@ -1,3 +1,9 @@
+// Elise Frigoli
+// CSC 435 - Advanced Web App Development
+// Created: 03/21/20
+// Last Modified: 03/22/20 - Added Comments
+
+// Importing dependencies
 import React from 'react';
 import './index.css';
 
@@ -68,7 +74,7 @@ function LoginForm(props) {
   )
 }
 
-// Creating the login component, composed of all other components
+// Creating the Login component, composed of all other components
 class Login extends React.Component {
   render() {
     return (
