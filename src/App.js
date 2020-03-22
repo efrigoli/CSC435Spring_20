@@ -4,7 +4,7 @@ import './index.css';
 class App extends React.Component {
   render() {
     return (
-      <div className="container">
+      <div className="container homePage">
         <h1>Home</h1>
         <h2>Homepage coming soon!</h2>
       </div>
@@ -12,4 +12,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default App;
