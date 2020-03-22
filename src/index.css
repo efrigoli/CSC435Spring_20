@@ -1,13 +1,183 @@
+@import url('https://fonts.googleapis.com/css?family=Lustria|Raleway:300,400,500,600&display=swap');
+
+/* Typography */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: #FCF9F6;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #171b1c;
+  background-image: linear-gradient(#e79796, #ffb284);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+h1, h2 {
+  font-family: 'Lustria', serif;
+  font-weight: 400;
+  color: #261a0d;
+}
+
+/* Structure */
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background-color: #261a0d;
+  padding: 15px;
+  text-align: right;
+  box-shadow: 0px 0px 10px 0px rgba(38, 26, 13, 0.5);
+}
+
+header a {
+  font-weight: 600;
+  color: #f5cec7;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0px 20px;
+}
+
+header a:first-of-type {
+  border-right: 1px solid #f5cec7;
+}
+
+header a.active {
+  color: #FCF9F6;
+}
+
+header a:active, header a:focus, header a:hover {
+  color: #FFb284;
+}
+
+header h3 {
+  color: #FFC98B;
+  margin: 0px;
+  font-family: 'Lustria', serif;
+  font-size: 20px;
+  float: left;
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px;
+  background-color: #261a0d;
+  color: #f5cec7;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0px 0px 10px 0px rgba(38, 26, 13, 0.5);
+}
+
+footer p {
+  margin: 0px;
+}
+
+/* Homepage */
+.homePage {
+  width: 100%;
+  text-align: center;
+}
+
+/* Login Page */
+.loginPage {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.loginForm {
+  width: 75%;
+  max-width: 600px;
+  margin: 0px auto;
+  background-color: #fcf9f6;
+  border-radius: 10px;
+  padding: 10px 20px 40px;
+  position: relative;
+  top: 50%;
+  box-shadow: 0px 0px 10px 0px rgba(38, 26, 13, 0.5);
+}
+
+.loginForm label {
+  color: #261a0d;
+  font-weight: 400;
+  display: block;
+}
+
+.loginForm .inputContainer {
+  width: 80%;
+  text-align: left;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.loginForm input {
+  background-image: none!important;
+  padding: 15px 10px;
+  font-size: 16px;
+  border: 1px solid #261a0d;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: calc(100% - 20px);
+  font-family: Raleway;
+  font-weight: 600;
+  color: #261a0d;
+}
+
+.loginForm input::placeholder {
+  font-style: italic;
+  font-weight: 300;
+  color: #a79e58;
+}
+
+.loginForm input:active, .loginForm input:focus {
+    outline: #ffc98b;
+    outline-style: auto;
+    outline-width: 5px;
+}
+
+.loginForm button {
+  background-color: #a79e58;
+  padding: 15px 15px;
+  border-radius: 5px;
+  border: 2px solid #a79e58;
+  transition: all 0.3s ease;
+  width: 50%;
+  font-size: 14px;
+  font-family: Raleway;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 20px;
+}
+
+.loginForm button:hover, .loginForm button:active, .loginForm button:focus {
+  background-color: #FFC98B;
+  cursor: pointer;
+}
+
+.loginForm button:active, .loginForm button:focus {
+    outline: #ffb284;
+    outline-style: auto;
+    outline-width: 5px;
 }
