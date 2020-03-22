@@ -27,8 +27,6 @@ const routing = (
         <Route path="/login" component={Login} />
         <Route component={Notfound} />
       </Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/login" component={Login} />
     </div>
   </Router>
 )
