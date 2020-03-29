@@ -16,6 +16,7 @@ import Header from "./header";
 import Footer from "./footer";
 import * as serviceWorker from './serviceWorker';
 
+// Creating contact data to be passed to the footer component
 var contactData = {
   phone: "1-800-0000",
   emailAddresses:["info@bookstore.com", "order-support@bookstore.com"],
@@ -24,6 +25,7 @@ var contactData = {
   state: "AZ",
   zip: "11111"
 }
+
 // Creating the routing to link between pages
 const routing = (
   <Router>

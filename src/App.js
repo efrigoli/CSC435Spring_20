@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 }
 
+// Button component, which receives an onClick function and label as props
 class Button extends React.Component {
   render() {
     return (
@@ -47,6 +48,7 @@ class Button extends React.Component {
   }
 }
 
+// ItemContainer component which has four states
 class ItemContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +59,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     };
   }
+  {/* showBooks function, which sets the state of the ItemContainer to only display book items */}
   showBooks = () => {
     this.setState(state => ({
       itemType: 'books',
@@ -65,6 +68,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     }));
   };
+  {/* showSupplies function, which sets the state of the ItemContainer to only display supply items */}
   showSupplies = () => {
     this.setState(state => ({
       itemType: 'school supplies',
@@ -73,6 +77,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     }));
   };
+  {/* showMerch function, which sets the state of the ItemContainer to only display merchandise items */}
   showMerch = () => {
     this.setState(state => ({
       itemType: 'school merchandise',
@@ -85,9 +90,12 @@ class ItemContainer extends React.Component {
     return (
       <div className="homeItemContainer">
         <h2>Recently Added {this.state.itemType}</h2>
+        {/* Individual row components, which inherit their states from the parent component */}
         <BookRow displayBooks={this.state.displayBooks} />
         <SupplyRow displaySupplies={this.state.displaySupplies} />
         <MerchRow displayMerch={this.state.displayMerch} />
+        {/* Button components, which change the state of the parent component, which in turn allows
+           them to communcate to their sibling row components */}
         <Button onClick={this.showBooks} buttonLabel='Show Books' />
         <Button onClick={this.showSupplies} buttonLabel='Show Supplies' />
         <Button onClick={this.showMerch} buttonLabel='Show Merch' />
@@ -96,7 +104,7 @@ class ItemContainer extends React.Component {
   }
 }
 
-
+// BookRow component, which creates a row of book item listings by reading from the bookList.JSON file using keys
 class BookRow extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +132,7 @@ class BookRow extends React.Component {
   }
 }
 
-
+// SupplyRow component, which creates a row of book item listings by reading from the supplyList.JSON file using keys
 class SupplyRow extends React.Component {
   constructor(props) {
     super(props);
@@ -151,7 +159,7 @@ class SupplyRow extends React.Component {
   }
 }
 
-
+// MerchRow component, which creates a row of book item listings by reading from the merchList.JSON file using keys
 class MerchRow extends React.Component {
   constructor(props) {
     super(props);
@@ -178,6 +186,8 @@ class MerchRow extends React.Component {
   }
 }
 
+/* ItemListing component, which creates a card containing the image, title, and price of an item,
+read from one of the three JSON files */
 class ItemListing extends React.Component {
   render() {
     return (
