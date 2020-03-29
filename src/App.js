@@ -59,7 +59,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     };
   }
-  {/* showBooks function, which sets the state of the ItemContainer to only display book items */}
+// showBooks function, which sets the state of the ItemContainer to only display book items
   showBooks = () => {
     this.setState(state => ({
       itemType: 'books',
@@ -68,7 +68,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     }));
   };
-  {/* showSupplies function, which sets the state of the ItemContainer to only display supply items */}
+  // showSupplies function, which sets the state of the ItemContainer to only display supply items
   showSupplies = () => {
     this.setState(state => ({
       itemType: 'school supplies',
@@ -77,7 +77,7 @@ class ItemContainer extends React.Component {
       displayMerch: false,
     }));
   };
-  {/* showMerch function, which sets the state of the ItemContainer to only display merchandise items */}
+  // showMerch function, which sets the state of the ItemContainer to only display merchandise items
   showMerch = () => {
     this.setState(state => ({
       itemType: 'school merchandise',
