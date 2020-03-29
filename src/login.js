@@ -1,7 +1,9 @@
-// Elise Frigoli
-// CSC 435 - Advanced Web App Development
-// Created: 03/21/20
-// Last Modified: 03/22/20 - Added Comments
+/* Elise Frigoli
+ * CSC 435 - Advanced Web App Development
+ * Created: 03/21/20
+ * Last Modified: 03/22/20 - Added Comments
+ *                03/28/20 - Changed FormField, Button, and LoginForm components from function to class types
+ */
 
 // Importing dependencies
 import React from 'react';
@@ -29,49 +31,55 @@ const pwdPassword = {
 };
 
 // Creating the form field component
-function FormField(props) {
-  return (
-    <div className="inputContainer">
-      <label htmlFor={props.label.for}> {props.label.text} </label>
-      <input
-        type={props.type}
-        name={props.name}
-        placeholder={props.placeholder}
-      />
-    </div>
-  )
+class FormField extends React.Component {
+  render() {
+    return (
+      <div className="inputContainer">
+        <label htmlFor={this.props.label.for}> {this.props.label.text} </label>
+        <input
+          type={this.props.type}
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+        />
+      </div>
+    )
+  }
 }
 
 // Creating the button component
-function Button(props) {
-  return (
-    <button type={props.type}>{props.label}</button>
-  )
+class Button extends React.Component {
+  render() {
+    return (
+      <button type={this.props.type}>{this.props.label}</button>
+    )
+  }
 }
 
 // Creating the login form component, with the form field and button components used as subcomponents
-function LoginForm(props) {
-  return (
-    <div className="loginForm">
-      <h2>Log In</h2>
-      <FormField
-        name={emlEmail.name}
-        type={emlEmail.type}
-        placeholder={emlEmail.placeholder}
-        label={emlEmail.label}
-      />
-      <FormField
-        name={pwdPassword.name}
-        type={pwdPassword.type}
-        placeholder={pwdPassword.placeholder}
-        label={pwdPassword.label}
-      />
-      <Button
-        type='submit'
-        label='Log In'
-      />
-    </div>
-  )
+class LoginForm extends React.Component{
+  render() {
+    return (
+      <div className="loginForm">
+        <h2>Log In</h2>
+        <FormField
+          name={emlEmail.name}
+          type={emlEmail.type}
+          placeholder={emlEmail.placeholder}
+          label={emlEmail.label}
+        />
+        <FormField
+          name={pwdPassword.name}
+          type={pwdPassword.type}
+          placeholder={pwdPassword.placeholder}
+          label={pwdPassword.label}
+        />
+        <Button
+          type='submit'
+          label='Log In'
+        />
+      </div>
+    )
+  }
 }
 
 // Creating the Login component, composed of all other components
