@@ -1,0 +1,20 @@
+[
+  {
+    "imageSource": "bookFrankenstein.jpg",
+    "alt": "Frankenstein",
+    "title": "Frankenstein by Mary Shelley",
+    "price": "24.99"
+  },
+  {
+    "imageSource": "bookMobyDick.jpg",
+    "alt": "Moby Dick",
+    "title": "Moby Dick by Herman Melville",
+    "price": "34.99"
+  },
+  {
+    "imageSource": "bookPhoto.jpg",
+    "alt": "Better Photo Basics",
+    "title": "Better Photo Basics by Jim Miotke",
+    "price": "19.99"
+  }
+]

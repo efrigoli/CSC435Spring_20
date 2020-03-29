@@ -1,7 +1,8 @@
-// Elise Frigoli
-// CSC 435 - Advanced Web App Development
-// Created: 03/21/20
-// Last Modified: 03/22/20 - Added Comments
+/* Elise Frigoli
+ * CSC 435 - Advanced Web App Development
+ * Created: 03/21/20
+ * Last Modified: 03/22/20 - Added Comments
+ */
 
 // Importing dependencies
 import React from "react";

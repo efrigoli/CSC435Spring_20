@@ -1,7 +1,8 @@
-// Elise Frigoli
-// CSC 435 - Advanced Web App Development
-// Created: 03/21/20
-// Last Modified: 03/22/20 - Added Comments
+/* Elise Frigoli
+ * CSC 435 - Advanced Web App Development
+ * Created: 03/21/20
+ * Last Modified: 03/22/20 - Added Comments
+ */
 
 // Importing dependencies
 import React from 'react';
@@ -15,6 +16,14 @@ import Header from "./header";
 import Footer from "./footer";
 import * as serviceWorker from './serviceWorker';
 
+var contactData = {
+  phone: "1-800-0000",
+  emailAddresses:["info@bookstore.com", "order-support@bookstore.com"],
+  street: "800 Franklin Street",
+  city: "Cityville",
+  state: "AZ",
+  zip: "11111"
+}
 // Creating the routing to link between pages
 const routing = (
   <Router>
@@ -25,7 +34,7 @@ const routing = (
         <Route path="/login" component={Login} />
         <Route component={Notfound} />
       </Switch>
-      <Footer />
+      <Footer contactData={contactData}/>
     </div>
   </Router>
 )

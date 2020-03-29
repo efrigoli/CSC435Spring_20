@@ -1,0 +1,20 @@
+[
+  {
+    "imageSource": "letterman.jpg",
+    "alt": "Letterman Jacket",
+    "title": "Embroidered Letterman Jacket",
+    "price": "74.99"
+  },
+  {
+    "imageSource": "mug.jpg",
+    "alt": "Ceramic Mug",
+    "title": "Ceramic Mug",
+    "price": "8.99"
+  },
+  {
+    "imageSource": "pennant.jpg",
+    "alt": "Pennant Banner",
+    "title": "Pennant Banner",
+    "price": "17.99"
+  }
+]

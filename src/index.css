@@ -1,7 +1,9 @@
 /* Elise Frigoli
  * CSC 435 - Advanced Web App Development
  * Created: 03/21/20
- * Last Modified: 03/22/20 - Added Comments */
+ * Last Modified: 03/22/20 - Added Comments
+ *                         - Added homepage styling
+ */
 
 /* Typography */
 @import url('https://fonts.googleapis.com/css?family=Lustria|Raleway:300,400,500,600&display=swap');
@@ -12,7 +14,7 @@ body {
   font-weight: 300;
   color: #FCF9F6;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,11 +33,48 @@ h1, h2 {
   color: #261a0d;
 }
 
+h2 {
+  font-size: 30px;
+}
+
+a.buttonLink {
+  color: #f5cec7;
+  background-color: #a79e58;
+  padding: 15px 65px;
+  border-radius: 5px;
+  border: 2px solid #a79e58;
+  transition: all 0.3s ease;
+  width: 50%;
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+a.buttonLink:hover, a.buttonLink:active, a.buttonLink:focus {
+  background-color: #FFC98B;
+  cursor: pointer;
+  color: #261a0d;
+}
+
 /* Structure */
 .container {
   width: 100%;
   max-width: 1170px;
   margin: 0 auto;
+}
+
+.fullWidthContainer {
+  width: 100%;
+}
+
+.heroContainer {
+  max-height: 275px;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Header */
@@ -74,40 +113,170 @@ header h3 {
   float: left;
 }
 
+/* Hero Section */
+.heroImg {
+  max-width: 200%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heroTitle {
+  position: absolute;
+  z-index: 100;
+  bottom: 20%;
+  color: #FCF9F6;
+  font-size: 46px;
+  padding: 0px 30px;
+  text-shadow: 0px 0px 10px #000;
+}
+
 /* Footer */
 footer {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  padding: 10px;
+  width: calc(100% - 20px);
+  padding: 20px 10px;
   background-color: #261a0d;
   color: #f5cec7;
   text-align: center;
   font-weight: 500;
   box-shadow: 0px 0px 10px 0px rgba(38, 26, 13, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-footer p {
-  margin: 0px;
+.contactInfo {
+  width: 80%;
+  text-align: left;
+}
+
+.contactInfo h3 {
+  margin-bottom:0px;
+  color: #FFb284;
+}
+
+.contactInfo ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.copyrightInfo {
+  width: 80%;
+  text-align: left;
+}
+
+.copyrightInfo p {
+  font-size:12px;
+}
+
+footer a {
+  font-weight: 600;
+  color: #FFb284;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer a:active, footer a:focus, footer a:hover {
+  color: #f5cec7;
 }
 
 /* Homepage */
 .homePage {
   width: 100%;
   text-align: center;
+  padding: 30px 0px;
 }
+
+.homeItemContainer h2 {
+  margin-bottom: 40px;
+  text-transform: capitalize;
+}
+
+.homeItemRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeItemCard {
+  width: 80%;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  background-color: #FCF9F6;
+}
+
+.homeItemCard h3 {
+  color: #261a0d;
+  padding: 0px 10px;
+}
+
+.homeItemCard h4 {
+  color: #a79e58;
+}
+
+.homeItemCard img {
+  max-width: 100%;
+}
+
+button.switchButton {
+  background-color: #a79e58;
+  padding: 15px 15px;
+  border-radius: 5px;
+  border: 2px solid #a79e58;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-family: Raleway;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 10px 20px;
+  width: calc(100% - 40px);
+}
+
+button.switchButton:active, button.switchButton:hover, button.switchButton:focus {
+  background-color: #FFC98B;
+  cursor: pointer;
+  color: #261a0d;
+  outline: #ffb284;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+.loginPanel {
+  background-image: url(/static/media/library.20f54136.jpg);
+  background-size: cover;
+  padding: 30px;
+  min-height: 300px;
+  position: relative;
+}
+
+.loginPanel > .container {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loginPanel > .container h2 {
+  color: #FCF9F6;
+  font-size: 46px;
+  text-shadow: 0px 0px 10px #000;
+}
+
 
 /* Login Page */
 .loginPage {
   width: 100%;
   text-align: center;
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
   right: 0;
   left: 0;
   display: flex;
   align-items: center;
+  padding: 50px 0px;
 }
 
 .loginForm {
@@ -184,4 +353,59 @@ footer p {
     outline: #ffb284;
     outline-style: auto;
     outline-width: 5px;
+}
+
+
+@media only screen and (min-width: 769px) {
+  .heroContainer {
+    max-height: 300px;
+  }
+  .heroImg {
+    max-width: 150%;
+  }
+  .heroTitle {
+    bottom: 30%;
+  }
+  .homeItemRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0px 30px;
+  }
+  .homeItemCard {
+    width: 30%;
+  }
+  .homeItemCardImgContainer {
+    width: 100%;
+    position: relative;
+    max-height: 250px;
+    overflow: hidden;
+  }
+  footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  .contactInfo {
+    width: 25%;
+  }
+  .contactInfo:nth-of-type(2) {
+    text-align: center;
+  }
+  .contactInfo:nth-of-type(3) {
+    text-align: right;
+  }
+  .copyrightInfo {
+    width: 100%;
+    text-align: center;
+  }
+  button.switchButton {
+    margin: 20px;
+    width: auto;
+  }
+  .loginPanel > .container {
+    top: calc(50% - 10px);
+  }
 }
