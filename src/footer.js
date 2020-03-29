@@ -9,7 +9,8 @@
 // Importing dependencies
 import React from "react";
 
-// Creating the Footer component to render the footer
+/* Creating the Footer component to render the footer using the prop data from index.js
+and separating arrays into lists with keys */
 class Footer extends React.Component {
   render() {
     return (
