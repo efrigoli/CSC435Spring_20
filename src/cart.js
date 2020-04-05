@@ -66,16 +66,10 @@ componentWillUnmount(){
   console.log('Component Has Been Unmounted');
 }
 
-addOne = () => {
-  this.props.onAdd(this.props.id);
-};
-removeOne = () => {
-  this.props.onSubtract(this.props.id);
-};
   render() {
     let removeItem;
     if (this.props.quantity > 1) {
-      removeItem = <Button onClick={this.removeOne} buttonLabel='-' />
+      removeItem = <Button onClick={() => this.props.onSubtract(this.props.id)} buttonLabel='-' />
     }
     else {
       removeItem = <Button onClick={() => this.props.onDelete(this.props.id)} buttonLabel='-' />
@@ -84,7 +78,7 @@ removeOne = () => {
       <div className="cartItemContainer" id={this.props.id}>
         <CartItemInfo imageSource={this.props.imageSource} alt={this.props.alt} title={this.props.title} price={this.props.price} />
         <CartItemQuantity quantity={this.props.quantity} price={this.props.price} />
-        <Button onClick={this.addOne} buttonLabel='+' />
+        <Button onClick={() => this.props.onAdd(this.props.id)} buttonLabel='+' />
         {removeItem}
         <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='Remove' />
       </div>
@@ -175,7 +169,12 @@ class CartList extends React.Component{
           itemList,
         };
       });
-      this.setState({itemCount: this.state.itemCount - 1, cartUpdated: true});
+      if (this.state.itemCount > 1) {
+        this.setState({itemCount: this.state.itemCount - 1, cartUpdated: true});
+      }
+      else {
+        this.setState({itemCount: 0, cartUpdated: true});
+      }
     };
 
 initialCount = (quantity) => {
