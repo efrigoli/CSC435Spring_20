@@ -72,7 +72,7 @@ componentWillUnmount(){
       removeItem = <Button onClick={() => this.props.onSubtract(this.props.id)} buttonLabel='-' />
     }
     else {
-      removeItem = <Button onClick={() => this.props.onDelete(this.props.id)} buttonLabel='-' />
+      removeItem = <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='-' />
     }
     return (
       <div className="cartItemContainer" id={this.props.id}>
