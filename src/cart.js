@@ -129,7 +129,8 @@ class CartList extends React.Component{
   render() {
     return (
       <div className="cartContainer">
-      <h2>{this.state.cartStatus}<br/>You have {this.state.itemCount} items in your cart.</h2>
+      <h4>{this.state.cartStatus}</h4>
+      <h3>You have {this.state.itemCount} items in your cart.</h3>
         {this.state.cartItems.map((item, index) => {
          return (
              <CartItem
@@ -146,24 +147,6 @@ class CartList extends React.Component{
              quantity={item.quantity} />
          )
         })}
-      </div>
-    )
-  }
-}
-
-/* CartItemInfo component, which contains the image, title, and price of an item,
-read from the JSON list of items in the cart */
-class CartItemInfo extends React.Component {
-  render() {
-    return (
-      <div className="cartItemInfo">
-        <div className="cartItemImgContainer">
-          <img src={this.props.imageSource} alt={this.props.alt} />
-        </div>
-        <div className="cartItemDetailsContainer">
-          <h3>{this.props.title}</h3>
-          <h4>${this.props.price}</h4>
-        </div>
       </div>
     )
   }
@@ -194,25 +177,31 @@ class CartItem extends React.Component{
     }
     return (
       <div className="cartItemContainer" id={this.props.id}>
-        <CartItemInfo imageSource={this.props.imageSource} alt={this.props.alt} title={this.props.title} price={this.props.price} />
-        <CartItemQuantity quantity={this.props.quantity} price={this.props.price} />
-        <Button onClick={() => this.props.onAdd(this.props.id)} buttonLabel='+' />
-        {removeItem}
-        <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='Remove' />
+        <CartItemInfo imageSource={this.props.imageSource} alt={this.props.alt} title={this.props.title} quantity={this.props.quantity} price={this.props.price} />
+        <div className="buttonContainer">
+          <Button onClick={() => this.props.onAdd(this.props.id)} buttonLabel='+' />
+          {removeItem}
+          <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='Remove' />
+        </div>
       </div>
     )
   }
 }
 
-/* CartItemQuanity component, which contains the quantity of the item in the cart passed as a prop
- * Uses the quantity and price to calculate total price for the quantity of each item in cart */
-class CartItemQuantity extends React.Component {
+/* CartItemInfo component, which contains the image, title, and price of an item,
+read from the JSON list of items in the cart */
+class CartItemInfo extends React.Component {
   render() {
     return (
-      <div className="cartItemQuantity">
-        <h4>Quantity: {this.props.quantity}</h4>
-        <div className="cartItemQuantity">
-          <h4>Total Price: ${this.props.quantity * this.props.price}</h4>
+      <div className="cartItemInfo">
+        <div className="cartItemImgContainer">
+          <img src={this.props.imageSource} alt={this.props.alt} />
+        </div>
+        <div className="cartItemDetailsContainer">
+          <h4>{this.props.title}</h4>
+          <h5>${this.props.price}</h5>
+          <h6 className="quantity">Quantity: {this.props.quantity}</h6>
+          <h6 className="totalPrice">Total Price: ${this.props.quantity * this.props.price}</h6>
         </div>
       </div>
     )
