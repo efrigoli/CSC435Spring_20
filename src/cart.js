@@ -32,6 +32,7 @@ class CartList extends React.Component{
       itemCount: 0,
       cartStatus: "",
       cartUpdated: false,
+      cartTotal: 0,
       cartItems: [
         {
           "imageSource": "bookFrankenstein.jpg",
@@ -65,24 +66,26 @@ class CartList extends React.Component{
     };
   }
 
-  // Used by child components to delete an item entirely from the cart
-  onDeleteItem = (i, quantity) => {
+  // Used by child components to delete an item entirely from the cart and update the cart total
+  onDeleteItem = (i, quantity, total) => {
     this.setState(state => {
       const cartItems = this.state.cartItems.filter((item, j) => i !== j);
       return {
         cartItems,
       };
     });
-    this.setState({itemCount: this.state.itemCount - quantity, cartUpdated: true})
+    this.setState({
+      itemCount: this.state.itemCount - quantity,
+      cartTotal: this.state.cartTotal - total,
+      cartUpdated: true})
   };
 
-  // Used by child components to add an additional quantity of 1 to an item in the cart
-  onAddItem = i => {
+  // Used by child components to add an additional quantity of 1 to an item in the cart and update the cart total
+  onAddItem = (i, price) => {
     this.setState(state => {
       const itemList = state.cartItems.map((item, j) => {
         if (j === i) {
           item.quantity = item.quantity + 1;
-          console.log("new quantity: " + item.quantity);
           return item;
         } else {
           return item;
@@ -92,11 +95,14 @@ class CartList extends React.Component{
         itemList,
       };
     });
-    this.setState({itemCount: this.state.itemCount + 1, cartUpdated: true});
+    this.setState({
+      itemCount: this.state.itemCount + 1,
+      cartTotal: this.state.cartTotal + parseFloat(price),
+      cartUpdated: true});
   };
 
-  // Used by child components to subtract a quantity of 1 from an item in the cart
-  onSubtractItem = i => {
+  // Used by child components to subtract a quantity of 1 from an item in the cart and update the cart total
+  onSubtractItem = (i, price) => {
     this.setState(state => {
       const itemList = this.state.cartItems.map((item, j) => {
         if (j === i) {
@@ -110,12 +116,20 @@ class CartList extends React.Component{
         itemList,
       };
     });
-    this.setState({itemCount: this.state.itemCount - 1, cartUpdated: true});
+    this.setState({
+      itemCount: this.state.itemCount - 1,
+      cartTotal: this.state.cartTotal - parseFloat(price),
+      cartUpdated: true});
   };
 
   // Used by child components to set the initial count of items in the cart to the number of items in the array
   initialCount = (quantity) => {
     this.setState(prevstate => ({ itemCount: prevstate.itemCount + quantity}));
+  }
+
+  // Used by child components to set the initial total price of all items in the cart
+  initialTotal = (totalPrice) => {
+    this.setState(prevstate => ({ cartTotal: prevstate.cartTotal + totalPrice}));
   }
 
   // When the CartList updates, change the status message to inform the user it updated successfully
@@ -125,7 +139,7 @@ class CartList extends React.Component{
       }
   }
 
-  // Renders a CartItem component for each item in the data array
+  // Renders a CartItem component for each item in the data array and displays the total of all items in cart at the bottom
   render() {
     return (
       <div className="cartContainer">
@@ -136,6 +150,7 @@ class CartList extends React.Component{
              <CartItem
              key={index}
              initialCount={this.initialCount}
+             initialTotal={this.initialTotal}
              onDelete={this.onDeleteItem}
              onAdd={this.onAddItem}
              onSubtract={this.onSubtractItem}
@@ -147,6 +162,9 @@ class CartList extends React.Component{
              quantity={item.quantity} />
          )
         })}
+        <div className="cartTotal">
+          <h2>Cart Total: ${this.state.cartTotal.toFixed(2)}</h2>
+        </div>
       </div>
     )
   }
@@ -158,6 +176,7 @@ class CartItem extends React.Component{
   // Updating the initial count of the CartList when each CartItem component mounts
   componentDidMount() {
     this.props.initialCount(this.props.quantity);
+    this.props.initialTotal(this.props.price * this.props.quantity);
   }
 
   /* Using the console log to confirm the unmounting of each CartItem component that is deleted
@@ -170,18 +189,18 @@ class CartItem extends React.Component{
   render() {
     let removeItem;
     if (this.props.quantity > 1) {
-      removeItem = <Button onClick={() => this.props.onSubtract(this.props.id)} buttonLabel='-' />
+      removeItem = <Button onClick={() => this.props.onSubtract(this.props.id, this.props.price)} buttonLabel='-' />
     }
     else {
-      removeItem = <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='-' />
+      removeItem = <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity, this.props.quantity*this.props.price)} buttonLabel='-' />
     }
     return (
       <div className="cartItemContainer" id={this.props.id}>
         <CartItemInfo imageSource={this.props.imageSource} alt={this.props.alt} title={this.props.title} quantity={this.props.quantity} price={this.props.price} />
         <div className="buttonContainer">
-          <Button onClick={() => this.props.onAdd(this.props.id)} buttonLabel='+' />
+          <Button onClick={() => this.props.onAdd(this.props.id, this.props.price)} buttonLabel='+' />
           {removeItem}
-          <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity)} buttonLabel='Remove' />
+          <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity, this.props.quantity*this.props.price)} buttonLabel='Remove' />
         </div>
       </div>
     )
@@ -201,7 +220,7 @@ class CartItemInfo extends React.Component {
           <h4>{this.props.title}</h4>
           <h5>${this.props.price}</h5>
           <h6 className="quantity">Quantity: {this.props.quantity}</h6>
-          <h6 className="totalPrice">Total Price: ${this.props.quantity * this.props.price}</h6>
+          <h6 className="totalPrice">Total Price: ${this.props.quantity*this.props.price}</h6>
         </div>
       </div>
     )

@@ -358,10 +358,10 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   cursor: pointer;
 }
 
-.loginForm button:active, .loginForm button:focus {
-    outline: #ffb284;
-    outline-style: auto;
-    outline-width: 5px;
+button:active, button:focus {
+    outline: #ffb284!important;
+    outline-style: auto!important;
+    outline-width: 5px!important;
 }
 
 /* Cart Page */
@@ -410,15 +410,17 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   background-color:#F9E4DF;
 }
 
-.cartItemContainer:last-of-type {
-  padding-bottom: 50px;
-  border-radius: 0px 0px 10px 10px;
-}
-
 .cartItemImgContainer > img {
   max-width: 100%;
   border-radius: 10px;
   margin: 10px auto;
+}
+
+.cartTotal {
+  padding: 20px 30px;
+  text-align: right;
+  border-style: double none none none;
+  border-color: #FFb284;
 }
 
 .buttonContainer {
