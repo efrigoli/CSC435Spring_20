@@ -15,24 +15,26 @@ class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <div className="contactInfo">
-          <h3>Call Us:</h3>
-          <p>{this.props.contactData.phone}</p>
-        </div>
-        <div className="contactInfo">
-          <h3>Email Us:</h3>
-          <ul>{this.props.contactData.emailAddresses.map((email, i) => <li key={i}>{email}</li>)}</ul>
-        </div>
-        <div className="contactInfo">
-          <h3>Visit Us:</h3>
-          <p>{this.props.contactData.street}
-            <br />{this.props.contactData.city}, {this.props.contactData.state}
-            <br />{this.props.contactData.zip}
-          </p>
-        </div>
-        <div className="copyrightInfo">
-          <p>All images are from <a href="https://unsplash.com/" target="_blank">Unsplash</a> and are freely licensed for both commercial and non-commercial use.</p>
-          <p>&copy;{new Date().getFullYear()} Elise Frigoli</p>
+        <div class="container">
+          <div className="contactInfo">
+            <h3>Call Us:</h3>
+            <p>{this.props.contactData.phone}</p>
+          </div>
+          <div className="contactInfo">
+            <h3>Email Us:</h3>
+            <ul>{this.props.contactData.emailAddresses.map((email, i) => <li key={i}>{email}</li>)}</ul>
+          </div>
+          <div className="contactInfo">
+            <h3>Visit Us:</h3>
+            <p>{this.props.contactData.street}
+              <br />{this.props.contactData.city}, {this.props.contactData.state}
+              <br />{this.props.contactData.zip}
+            </p>
+          </div>
+          <div className="copyrightInfo">
+            <p>All images are from <a href="https://unsplash.com/" target="_blank">Unsplash</a> and are freely licensed for both commercial and non-commercial use.</p>
+            <p>&copy;{new Date().getFullYear()} Elise Frigoli</p>
+          </div>
         </div>
       </footer>
     )
