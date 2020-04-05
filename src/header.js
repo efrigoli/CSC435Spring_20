@@ -2,6 +2,7 @@
  * CSC 435 - Advanced Web App Development
  * Created: 03/21/20
  * Last Modified: 03/22/20 - Added Comments
+ *                04/05/20 - Added Cart to navigation
  */
 
 // Importing dependencies
@@ -20,6 +21,9 @@ function Header() {
         </NavLink>
         <NavLink activeClassName="active" to="/login">
           Log In
+        </NavLink>
+        <NavLink activeClassName="active" to="/cart">
+          Shopping Cart
         </NavLink>
       </nav>
     </header>

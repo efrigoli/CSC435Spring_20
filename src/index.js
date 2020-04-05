@@ -2,6 +2,7 @@
  * CSC 435 - Advanced Web App Development
  * Created: 03/21/20
  * Last Modified: 03/22/20 - Added Comments
+ *                04/05/20 - Added Cart to routing
  */
 
 // Importing dependencies
@@ -11,10 +12,12 @@ import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-do
 import './index.css';
 import App from './App';
 import Login from './login';
+import Cart from './cart';
 import Notfound from './notFound';
 import Header from "./header";
 import Footer from "./footer";
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importing React-Bootstrap Style Library
 
 // Creating contact data to be passed to the footer component
 var contactData = {
@@ -34,6 +37,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
+        <Route path="/cart" component={Cart} />
         <Route component={Notfound} />
       </Switch>
       <Footer contactData={contactData}/>
