@@ -1,0 +1,30 @@
+[
+  {
+    "imageSource": "bookFrankenstein.jpg",
+    "alt": "Frankenstein",
+    "title": "Frankenstein by Mary Shelley",
+    "price": "24.99",
+    "quantity": 1
+  },
+  {
+    "imageSource": "mug.jpg",
+    "alt": "Ceramic Mug",
+    "title": "Ceramic Mug",
+    "price": "8.99",
+    "quantity": 2
+  },
+  {
+    "imageSource": "bookMobyDick.jpg",
+    "alt": "Moby Dick",
+    "title": "Moby Dick by Herman Melville",
+    "price": "34.99",
+    "quantity": 1
+  },
+  {
+    "imageSource": "pencils.jpg",
+    "alt": "No.2 Pencils",
+    "title": "No.2 Pencils (12-pack)",
+    "price": "1.99",
+    "quantity": 3
+  }
+]
