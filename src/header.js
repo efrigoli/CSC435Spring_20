@@ -19,11 +19,14 @@ function Header() {
         <NavLink exact activeClassName="active" to="/">
           Home
         </NavLink>
-        <NavLink activeClassName="active" to="/login">
-          Log In
+        <NavLink exact activeClassName="active" to="/products">
+          Products
         </NavLink>
         <NavLink activeClassName="active" to="/cart">
-          Shopping Cart
+          Shopping&nbsp;Cart
+        </NavLink>
+        <NavLink activeClassName="active" to="/login">
+          Admin&nbsp;Portal
         </NavLink>
       </nav>
     </header>

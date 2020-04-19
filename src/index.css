@@ -4,6 +4,7 @@
  * Last Modified: 03/22/20 - Added Comments
  *                         - Added homepage styling
  *                04/05/20 - Added cart styling
+ *                04/17/20 - Updated Login panel styles to Checkout panel styles
  */
 
 /* Typography */
@@ -26,6 +27,10 @@ body {
 #root {
   min-height: 100vh;
   position: relative;
+}
+
+.hidden {
+  display: none!important;
 }
 
 h1, h2 {
@@ -125,6 +130,15 @@ header h3 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.loginPageWrapper .heroImg {
+  transform: translate(-50%, -60%);
+}
+
+.productsPageWrapper .heroImg {
+  transform: translate(-50%, -30%);
+  opacity: .85
 }
 
 .heroTitle {
@@ -254,7 +268,7 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   outline-width: 5px;
 }
 
-.loginPanel {
+.checkoutPanel {
   background-image: url(/static/media/library.20f54136.jpg);
   background-size: cover;
   padding: 30px;
@@ -262,7 +276,7 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   position: relative;
 }
 
-.loginPanel > .container {
+.checkoutPanel > .container {
   position: absolute;
   top: calc(50% - 25px);
   left: 50%;
@@ -270,10 +284,11 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   text-align: center;
 }
 
-.loginPanel > .container h2 {
+.checkoutPanel > .container h2 {
   color: #FCF9F6;
   font-size: 46px;
   text-shadow: 0px 0px 10px #000;
+  margin-bottom:30px;
 }
 
 
@@ -461,6 +476,105 @@ button.changeQuantityButton:hover, button.changeQuantityButton:active, button.ch
   cursor: pointer;
 }
 
+/* Products Page */
+.productsItemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 30px;
+  align-items: flex-start;
+}
+
+.productsItemContainer h2 {
+  font-size: 24px;
+}
+
+.itemSwitchContainer {
+  width: 100%;
+  background-color: #fcf9f6;
+  border-radius: 10px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0px 0px 10px 0px rgba(38, 26, 13, 0.5);
+}
+
+.productsDisplayContainer {
+  width: 100%;
+}
+
+.productsDisplayContainer > h3 {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.productsItemListings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsItemCard {
+  width: 100%;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  background-color: #FCF9F6;
+}
+
+.productsItemCard h3 {
+  color: #261a0d;
+  padding: 10px;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+
+.productsItemCard h4 {
+  color: #a79e58;
+  padding: 0px 10px 10px;
+  font-size: 16px;
+}
+
+.productsItemCard img {
+  max-width: 100%;
+}
+
+button.filterButton {
+  display: block;
+  background-color: transparent;
+  border: 0px!important;
+  outline: none!important;
+  color: #a79e58;
+}
+
+button.filterButton:hover, button.filterButton:focus, button.filterButton:active {
+  text-decoration: underline!important;
+}
+
+button.cartButton {
+  width: 80%;
+  margin: 20px 10%;
+  background-color: #a79e58;
+  padding: 15px 15px;
+  border-radius: 5px;
+  border: 2px solid #a79e58;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-family: Raleway;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+button.cartButton.inCart {
+  background-color: #e79893;
+  border-color: #e79893;
+}
+
+button.cartButton:hover {
+  background-color: #FFC98B;
+  border-color: #FFC98B;
+}
+
 @media only screen and (min-width: 769px) {
   .heroContainer {
     max-height: 300px;
@@ -511,7 +625,7 @@ button.changeQuantityButton:hover, button.changeQuantityButton:active, button.ch
     margin: 20px;
     width: auto;
   }
-  .loginPanel > .container {
+  .checkoutPanel > .container {
     top: calc(50% - 10px);
   }
   .cartPage > .container {
@@ -533,6 +647,40 @@ button.changeQuantityButton:hover, button.changeQuantityButton:active, button.ch
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .productsItemListings {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0px 30px;
+  }
+  .productsItemListings {
+    padding: 0px;
+  }
+  .productsItemCard {
+    width: 30%;
+  }
+  .productsItemCardImgContainer {
+    width: 100%;
+    position: relative;
+    max-height: 250px;
+    overflow: hidden;
+  }
+  .productsItemContainer {
+    flex-direction: row;
+    padding: 60px 0px;
+  }
+  .itemSwitchContainer {
+    width: 30%;
+    margin-right: 45px;
+    margin-top: 40px;
+  }
+  .productsDisplayContainer {
+    width: 70%;
   }
 }
 

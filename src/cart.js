@@ -2,20 +2,25 @@
  * CSC 435 - Advanced Web App Development
  * Created: 04/04/20
  * Last Modified: 04/05/20 - Finished funcionality of cart item counting, added comments
+ *                04/17/20 - Added hero image panel for stylistic consistency throughout site
  */
 
 // Importing dependencies
 import React from 'react';
 import './index.css';
-
+import heroImg from './img/cartHero.jpg';
 
 // Creating the Cart component, composed of a CartList
 class Cart extends React.Component {
   render() {
+    const heroText = 'Shopping Cart';
     return (
       <div className="cartPage">
+        <div className="fullWidthContainer heroContainer">
+          <img src={heroImg} className="heroImg" alt="Login Hero" />
+          <h1 className="heroTitle">{heroText}</h1>
+        </div>
         <div className="container">
-          <h2>Shopping Cart</h2>
           <CartList />
         </div>
       </div>

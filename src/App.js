@@ -3,6 +3,7 @@
  * Created: 03/21/20
  * Last Modified: 03/22/20 - Added Comments
  *                         - Created homepage components
+ *                04/17/20 - Updated Login panel to Checkout panel
  */
 
 // Importing dependencies
@@ -26,10 +27,10 @@ class App extends React.Component {
         <div className="container homePage">
           <ItemContainer />
         </div>
-        <div className="fulLWidthContainer loginPanel">
+        <div className="fulLWidthContainer checkoutPanel">
           <div className="container">
             <h2>Already have items saved in your cart?</h2>
-            <a className="buttonLink" href="/login">Login Now!</a>
+            <a className="buttonLink" href="/cart">Checkout Now!</a>
           </div>
         </div>
       </div>
