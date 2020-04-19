@@ -7,11 +7,11 @@
 
 // Importing dependencies
 import React from 'react';
-import './index.css';
-import heroImg from './img/productsHero.jpg';
-import bookList from './itemLists/bookList.json';
-import supplyList from './itemLists/supplyList.json';
-import merchList from './itemLists/merchList.json';
+import '../index.css';
+import heroImg from '../img/productsHero.jpg';
+import bookList from '../itemLists/bookList.json';
+import supplyList from '../itemLists/supplyList.json';
+import merchList from '../itemLists/merchList.json';
 
 // Creating the Products component to render the products page
 class Products extends React.Component {
@@ -121,7 +121,7 @@ class BookListings extends React.Component {
       <div>
         <div className={bookClassNames}>
           {bookList.map((book, index) => {
-            return <ItemListing key={index} imageSource={require('./img/' + book.imageSource)} alt={book.alt} title={book.title} price={book.price} />
+            return <ItemListing key={index} imageSource={require('../img/' + book.imageSource)} alt={book.alt} title={book.title} price={book.price} />
           })}
         </div>
       </div>
@@ -148,7 +148,7 @@ class SupplyListings extends React.Component {
       <div>
         <div className={supplyClassNames}>
           {supplyList.map((supply, index) => {
-            return <ItemListing key={index} imageSource={require('./img/' + supply.imageSource)} alt={supply.alt} title={supply.title} price={supply.price} />
+            return <ItemListing key={index} imageSource={require('../img/' + supply.imageSource)} alt={supply.alt} title={supply.title} price={supply.price} />
           })}
         </div>
       </div>
@@ -175,7 +175,7 @@ class MerchListings extends React.Component {
       <div>
         <div className={merchClassNames}>
           {merchList.map((merch, index) => {
-            return <ItemListing key={index} imageSource={require('./img/' + merch.imageSource)} alt={merch.alt} title={merch.title} price={merch.price} />
+            return <ItemListing key={index} imageSource={require('../img/' + merch.imageSource)} alt={merch.alt} title={merch.title} price={merch.price} />
           })}
         </div>
       </div>

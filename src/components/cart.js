@@ -7,8 +7,8 @@
 
 // Importing dependencies
 import React from 'react';
-import './index.css';
-import heroImg from './img/cartHero.jpg';
+import '../index.css';
+import heroImg from '../img/cartHero.jpg';
 
 // Creating the Cart component, composed of a CartList
 class Cart extends React.Component {
@@ -160,7 +160,7 @@ class CartList extends React.Component{
              onAdd={this.onAddItem}
              onSubtract={this.onSubtractItem}
              id={index}
-             imageSource={require('./img/' + item.imageSource)}
+             imageSource={require('../img/' + item.imageSource)}
              alt={item.alt}
              title={item.title}
              price={item.price}

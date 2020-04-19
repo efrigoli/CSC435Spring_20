@@ -6,7 +6,7 @@
 
 // Importing dependencies
 import React from 'react';
-import './index.css';
+import '../index.css';
 
 // Creating an element to display a not found message in the case of a 404 error
 const Notfound = () => <div className="container"><h1>Page Not Found</h1></div>

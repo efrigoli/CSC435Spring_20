@@ -15,7 +15,7 @@ class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <div class="container">
+        <div className="container">
           <div className="contactInfo">
             <h3>Call Us:</h3>
             <p>{this.props.contactData.phone}</p>
