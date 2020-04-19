@@ -3,11 +3,13 @@
  * Created: 03/21/20
  * Last Modified: 03/22/20 - Added Comments
  *                03/28/20 - Changed FormField, Button, and LoginForm components from function to class types
+ *                04/17/20 - Added hero image panel for stylistic consistency throughout site
  */
 
 // Importing dependencies
 import React from 'react';
 import './index.css';
+import heroImg from './img/loginHero.jpg';
 
 // Setting up immutable elements for each of the form fields
 const emlEmail = {
@@ -85,10 +87,17 @@ class LoginForm extends React.Component{
 // Creating the Login component, composed of all other components
 class Login extends React.Component {
   render() {
+    const heroText = 'Admin Portal Login';
     return (
-      <div className="loginPage">
-        <div className="container">
-          <LoginForm />
+      <div className="loginPageWrapper">
+        <div className="fullWidthContainer heroContainer">
+          <img src={heroImg} className="heroImg" alt="Login Hero" />
+          <h1 className="heroTitle">{heroText}</h1>
+        </div>
+        <div className="loginPage">
+          <div className="container">
+            <LoginForm />
+          </div>
         </div>
       </div>
     );

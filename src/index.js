@@ -13,6 +13,7 @@ import './index.css';
 import App from './App';
 import Login from './login';
 import Cart from './cart';
+import Products from './products';
 import Notfound from './notFound';
 import Header from "./header";
 import Footer from "./footer";
@@ -36,8 +37,9 @@ const routing = (
       <Header />
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/login" component={Login} />
+        <Route path="/products" component={Products} />
         <Route path="/cart" component={Cart} />
+        <Route path="/login" component={Login} />
         <Route component={Notfound} />
       </Switch>
       <Footer contactData={contactData}/>
