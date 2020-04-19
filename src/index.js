@@ -3,50 +3,29 @@
  * Created: 03/21/20
  * Last Modified: 03/22/20 - Added Comments
  *                04/05/20 - Added Cart to routing
+ *                04/19/20 - Re-structured application, added Redux
  */
 
 // Importing dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
-import './index.css';
 import App from './App';
-import Login from './login';
-import Cart from './cart';
-import Products from './products';
-import Notfound from './notFound';
-import Header from "./header";
-import Footer from "./footer";
+import './index.css'
+import cartReducer from './components/reducers/cartReducer';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing React-Bootstrap Style Library
 
-// Creating contact data to be passed to the footer component
-var contactData = {
-  phone: "1-800-0000",
-  emailAddresses:["info@bookstore.com", "order-support@bookstore.com"],
-  street: "800 Franklin Street",
-  city: "Cityville",
-  state: "AZ",
-  zip: "11111"
-}
+// Creating a store to hold the state tree of the entire application
+const store = createStore(cartReducer);
 
-// Creating the routing to link between pages
-const routing = (
-  <Router>
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/products" component={Products} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route component={Notfound} />
-      </Switch>
-      <Footer contactData={contactData}/>
-    </div>
-  </Router>
-)
-
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(
+  // Wrapping the application in a provider, which allows us to pass the store as props to components
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root')
+);
 
 serviceWorker.unregister();

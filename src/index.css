@@ -5,6 +5,7 @@
  *                         - Added homepage styling
  *                04/05/20 - Added cart styling
  *                04/17/20 - Updated Login panel styles to Checkout panel styles
+ *                04/19/20 - Updated Cart styles, added Product styles
  */
 
 /* Typography */
@@ -416,6 +417,15 @@ button:active, button:focus {
   font-weight: 400;
 }
 
+.cartContainer a {
+    color: #a79e58;
+    transition: color 0.1s ease;
+}
+
+.cartContainer a:hover, .cartContainer a:focus, .cartContainer a:active {
+    color: #261a0d;
+}
+
 .cartItemContainer {
   padding: 20px 30px;
   border-top: 1px solid #FFb284;
@@ -510,6 +520,7 @@ button.changeQuantityButton:hover, button.changeQuantityButton:active, button.ch
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 60px 30px;
 }
 
 .productsItemCard {
@@ -519,11 +530,12 @@ button.changeQuantityButton:hover, button.changeQuantityButton:active, button.ch
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   overflow: hidden;
   background-color: #FCF9F6;
+  text-align: center;
 }
 
 .productsItemCard h3 {
   color: #261a0d;
-  padding: 10px;
+  padding: 20px 10px 10px;
   margin-bottom: 0px;
   font-size: 18px;
 }
@@ -631,7 +643,7 @@ button.cartButton:hover {
   .cartPage > .container {
       margin: 40px auto;
   }
-  .cartContainer {
+  .cartItemDetailsContainer {
     text-align: left;
   }
   .cartItemImgContainer {
@@ -656,10 +668,7 @@ button.cartButton:hover {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
-    padding: 0px 30px;
-  }
-  .productsItemListings {
-    padding: 0px;
+    padding: 60px 0px;
   }
   .productsItemCard {
     width: 30%;
@@ -678,9 +687,6 @@ button.cartButton:hover {
     width: 30%;
     margin-right: 45px;
     margin-top: 40px;
-  }
-  .productsDisplayContainer {
-    width: 70%;
   }
 }
 

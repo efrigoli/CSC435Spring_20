@@ -3,18 +3,18 @@
     "imageSource": "letterman.jpg",
     "alt": "Letterman Jacket",
     "title": "Embroidered Letterman Jacket",
-    "price": "74.99"
+    "price": "75"
   },
   {
     "imageSource": "mug.jpg",
     "alt": "Ceramic Mug",
     "title": "Ceramic Mug",
-    "price": "8.99"
+    "price": "9"
   },
   {
     "imageSource": "pennant.jpg",
     "alt": "Pennant Banner",
     "title": "Pennant Banner",
-    "price": "17.99"
+    "price": "18"
   }
 ]

@@ -8,8 +8,8 @@
 
 // Importing dependencies
 import React from 'react';
-import './index.css';
-import heroImg from './img/loginHero.jpg';
+import '../index.css';
+import heroImg from '../img/loginHero.jpg';
 
 // Setting up immutable elements for each of the form fields
 const emlEmail = {
