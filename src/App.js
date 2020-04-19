@@ -1,11 +1,11 @@
 /* Elise Frigoli
  * CSC 435 - Advanced Web App Development
  * Created: 04/18/20
- * Last Modified:
+ * Last Modified: 04/19/20 - Re-structured app
  */
 
   // Importing dependencies
- import React, { Component } from 'react';
+ import React from 'react';
  import ReactDOM from 'react-dom';
  import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom';
  import './index.css';
@@ -31,7 +31,7 @@
  }
 
 // Creating App component to contain router swtich
- class App extends Component {
+ class App extends React.Component {
    render() {
      return (
        <Router>

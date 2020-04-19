@@ -3,214 +3,93 @@
  * Created: 04/04/20
  * Last Modified: 04/05/20 - Finished funcionality of cart item counting, added comments
  *                04/17/20 - Added hero image panel for stylistic consistency throughout site
+ *                04/19/20 - Refactored code to work through Redux
  */
 
-// Importing dependencies
+// Importing dependencies and actions
 import React from 'react';
 import '../index.css';
 import heroImg from '../img/cartHero.jpg';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { removeItem,addQuantity,subtractQuantity} from './actions/cartActions';
+
+// Taking the state in the reducer and passing it as props
+const mapStateToProps = (state)=>{
+    return{
+        items: state.addedItems,
+        total: state.total,
+        numCartItems: state.numCartItems
+    }
+}
+
+// Dispatching the REMOVE_ITEM, ADD_QUANTITY, and SUBTRACT_QUANTITY actions to the reducer
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        removeItem: (id)=>{dispatch(removeItem(id))},
+        addQuantity: (id)=>{dispatch(addQuantity(id))},
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+    }
+}
 
 // Creating the Cart component, composed of a CartList
 class Cart extends React.Component {
-  render() {
+  //to remove the item completely
+    handleRemove = (id)=>{
+        this.props.removeItem(id);
+    }
+    //to add the quantity
+    handleAddQuantity = (id)=>{
+        this.props.addQuantity(id);
+    }
+    //to substruct from the quantity
+    handleSubtractQuantity = (id)=>{
+        this.props.subtractQuantity(id);
+    }
+
+  render(){
     const heroText = 'Shopping Cart';
-    return (
-      <div className="cartPage">
+    // Finding the added items
+    let addedItems = this.props.items.length ?
+      (this.props.items.map(item=>{
+        // For each item in the addedItems array
+        return(
+          <div className="cartItemContainer" id={item.id}>
+            <CartItemInfo imageSource={item.img} alt={item.alt} title={item.title} quantity={item.quantity} price={item.price} />
+            <div className="buttonContainer">
+              <Button onClick={()=>{this.handleAddQuantity(item.id)}} buttonLabel='+' />
+              <Button onClick={()=>{this.handleSubtractQuantity(item.id)}} buttonLabel='-' />
+              {removeItem}
+              <Button onClick={()=>{this.handleRemove(item.id)}} buttonLabel='Remove' />
+            </div>
+          </div>
+        )
+      })
+    ):
+    (<p>Your cart is currently empty. <Link to="/products">Shop now!</Link></p> )
+
+   return(
+       <div className="cartPage">
         <div className="fullWidthContainer heroContainer">
-          <img src={heroImg} className="heroImg" alt="Login Hero" />
+          <img src={heroImg} className="heroImg" alt="Cart Hero" />
           <h1 className="heroTitle">{heroText}</h1>
         </div>
-        <div className="container">
-          <CartList />
+          <div className="container">
+            <div className="cartContainer">
+              <div className="cart">
+                  <h3>You have {this.props.numCartItems} items in your cart.</h3>
+                  {addedItems}
+              </div>
+              <div className="cartTotal">
+                <h2>Cart Total: ${this.props.total}</h2>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    );
-  }
-}
 
-/* Creating the CartList component, which contains a CartItem row for each item in the data
-* Currently using state array of sample data, will eventually pull from database */
-class CartList extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      itemCount: 0,
-      cartStatus: "",
-      cartUpdated: false,
-      cartTotal: 0,
-      cartItems: [
-        {
-          "imageSource": "bookFrankenstein.jpg",
-          "alt": "Frankenstein",
-          "title": "Frankenstein by Mary Shelley",
-          "price": "24.99",
-          "quantity": 1
-        },
-        {
-          "imageSource": "mug.jpg",
-          "alt": "Ceramic Mug",
-          "title": "Ceramic Mug",
-          "price": "8.99",
-          "quantity": 2
-        },
-        {
-          "imageSource": "bookMobyDick.jpg",
-          "alt": "Moby Dick",
-          "title": "Moby Dick by Herman Melville",
-          "price": "34.99",
-          "quantity": 1
-        },
-        {
-          "imageSource": "pencils.jpg",
-          "alt": "No.2 Pencils",
-          "title": "No.2 Pencils (12-pack)",
-          "price": "1.99",
-          "quantity": 3
-        }
-      ],
-    };
-  }
-
-  // Used by child components to delete an item entirely from the cart and update the cart total
-  onDeleteItem = (i, quantity, total) => {
-    this.setState(state => {
-      const cartItems = this.state.cartItems.filter((item, j) => i !== j);
-      return {
-        cartItems,
-      };
-    });
-    this.setState({
-      itemCount: this.state.itemCount - quantity,
-      cartTotal: this.state.cartTotal - total,
-      cartUpdated: true})
-  };
-
-  // Used by child components to add an additional quantity of 1 to an item in the cart and update the cart total
-  onAddItem = (i, price) => {
-    this.setState(state => {
-      const itemList = state.cartItems.map((item, j) => {
-        if (j === i) {
-          item.quantity = item.quantity + 1;
-          return item;
-        } else {
-          return item;
-        }
-      });
-      return {
-        itemList,
-      };
-    });
-    this.setState({
-      itemCount: this.state.itemCount + 1,
-      cartTotal: this.state.cartTotal + parseFloat(price),
-      cartUpdated: true});
-  };
-
-  // Used by child components to subtract a quantity of 1 from an item in the cart and update the cart total
-  onSubtractItem = (i, price) => {
-    this.setState(state => {
-      const itemList = this.state.cartItems.map((item, j) => {
-        if (j === i) {
-          item.quantity = item.quantity - 1;
-          return item;
-        } else {
-          return item;
-        }
-      });
-      return {
-        itemList,
-      };
-    });
-    this.setState({
-      itemCount: this.state.itemCount - 1,
-      cartTotal: this.state.cartTotal - parseFloat(price),
-      cartUpdated: true});
-  };
-
-  // Used by child components to set the initial count of items in the cart to the number of items in the array
-  initialCount = (quantity) => {
-    this.setState(prevstate => ({ itemCount: prevstate.itemCount + quantity}));
-  }
-
-  // Used by child components to set the initial total price of all items in the cart
-  initialTotal = (totalPrice) => {
-    this.setState(prevstate => ({ cartTotal: prevstate.cartTotal + totalPrice}));
-  }
-
-  // When the CartList updates, change the status message to inform the user it updated successfully
-  componentDidUpdate(prevProps, prevState) {
-      if (this.state.cartUpdated !== prevState.cartUpdated) {
-        this.setState({cartStatus: "Cart Updated Successfully!"})
-      }
-  }
-
-  // Renders a CartItem component for each item in the data array and displays the total of all items in cart at the bottom
-  render() {
-    return (
-      <div className="cartContainer">
-      <h4>{this.state.cartStatus}</h4>
-      <h3>You have {this.state.itemCount} items in your cart.</h3>
-        {this.state.cartItems.map((item, index) => {
-         return (
-             <CartItem
-             key={index}
-             initialCount={this.initialCount}
-             initialTotal={this.initialTotal}
-             onDelete={this.onDeleteItem}
-             onAdd={this.onAddItem}
-             onSubtract={this.onSubtractItem}
-             id={index}
-             imageSource={require('../img/' + item.imageSource)}
-             alt={item.alt}
-             title={item.title}
-             price={item.price}
-             quantity={item.quantity} />
-         )
-        })}
-        <div className="cartTotal">
-          <h2>Cart Total: ${this.state.cartTotal.toFixed(2)}</h2>
-        </div>
-      </div>
-    )
-  }
-}
-
-// Creating the CartItem component, which creates a CartItem row containing all item information
-class CartItem extends React.Component{
-
-  // Updating the initial count of the CartList when each CartItem component mounts
-  componentDidMount() {
-    this.props.initialCount(this.props.quantity);
-    this.props.initialTotal(this.props.price * this.props.quantity);
-  }
-
-  /* Using the console log to confirm the unmounting of each CartItem component that is deleted
-  *  Will do database connection cleanup inside this hook once database is connected */
-  componentWillUnmount(){
-    console.log('Component Has Been Unmounted');
-  }
-
-  // Rendering the item information and buttons to update the item quantities and remove items from cart
-  render() {
-    let removeItem;
-    if (this.props.quantity > 1) {
-      removeItem = <Button onClick={() => this.props.onSubtract(this.props.id, this.props.price)} buttonLabel='-' />
+      )
     }
-    else {
-      removeItem = <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity, this.props.quantity*this.props.price)} buttonLabel='-' />
-    }
-    return (
-      <div className="cartItemContainer" id={this.props.id}>
-        <CartItemInfo imageSource={this.props.imageSource} alt={this.props.alt} title={this.props.title} quantity={this.props.quantity} price={this.props.price} />
-        <div className="buttonContainer">
-          <Button onClick={() => this.props.onAdd(this.props.id, this.props.price)} buttonLabel='+' />
-          {removeItem}
-          <Button onClick={() => this.props.onDelete(this.props.id, this.props.quantity, this.props.quantity*this.props.price)} buttonLabel='Remove' />
-        </div>
-      </div>
-    )
   }
-}
 
 /* CartItemInfo component, which contains the image, title, and price of an item,
 read from the JSON list of items in the cart */
@@ -243,4 +122,5 @@ class Button extends React.Component {
   }
 }
 
-export default Cart;
+// Connecting the Cart component to the data in the store
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)

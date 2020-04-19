@@ -3,18 +3,18 @@
     "imageSource": "paperclips.jpg",
     "alt": "Paperclips",
     "title": "Paperclips (150 ct.)",
-    "price": "3.99"
+    "price": "4"
   },
   {
     "imageSource": "notebook.jpg",
     "alt": "Spiral-Bound Notebook",
     "title": "Spiral-Bound Notebook (250 pages)",
-    "price": "4.99"
+    "price": "5"
   },
   {
     "imageSource": "pencils.jpg",
     "alt": "No.2 Pencils",
     "title": "No.2 Pencils (12-pack)",
-    "price": "1.99"
+    "price": "2"
   }
 ]
