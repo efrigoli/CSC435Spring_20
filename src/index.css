@@ -354,7 +354,7 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
     outline-width: 5px;
 }
 
-.loginForm button {
+.loginPage button {
   background-color: #a79e58;
   padding: 15px 15px;
   border-radius: 5px;
@@ -369,7 +369,7 @@ button.switchButton:active, button.switchButton:hover, button.switchButton:focus
   margin-top: 20px;
 }
 
-.loginForm button:hover, .loginForm button:active, .loginForm button:focus {
+.loginPage button:hover, .loginPage button:active, .loginPage button:focus {
   background-color: #FFC98B;
   cursor: pointer;
 }

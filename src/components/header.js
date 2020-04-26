@@ -26,7 +26,10 @@ function Header() {
           Shopping&nbsp;Cart
         </NavLink>
         <NavLink activeClassName="active" to="/login">
-          Admin&nbsp;Portal
+          Login
+        </NavLink>
+        <NavLink activeClassName="active" to="/register">
+          Register
         </NavLink>
       </nav>
     </header>
