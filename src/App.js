@@ -11,6 +11,7 @@
  import './index.css';
  import Home from './components/home';
  import Login from './components/login';
+ import Register from './components/register';
  import Cart from './components/cart';
  import Products from './components/products';
  import Notfound from './components/notFound';
@@ -18,7 +19,6 @@
  import Footer from "./components/footer";
  import * as serviceWorker from './serviceWorker';
  import 'bootstrap/dist/css/bootstrap.min.css'; // Importing React-Bootstrap Style Library
-
 
  // Creating contact data to be passed to the footer component
  var contactData = {
@@ -42,6 +42,7 @@
              <Route path="/products" component={Products} />
              <Route path="/cart" component={Cart} />
              <Route path="/login" component={Login} />
+             <Route path="/register" component={Register} />
              <Route component={Notfound} />
            </Switch>
            <Footer contactData={contactData}/>
