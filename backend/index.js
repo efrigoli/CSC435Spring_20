@@ -8,7 +8,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const PORT = 4000;
+// const PORT = 4000;
+const port = process.env.PORT || 4000;
 const mongoose = require("mongoose");
 let user = require("./model");
 let bodyParser = require('body-parser');
@@ -23,8 +24,8 @@ app.use(bodyParser.urlencoded({
 const router = express.Router();
 
 // Setting up Mongoose connection to local db
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/applicationdb", {
-mongoose.connect("mongodb://127.0.0.1:27017/applicationdb", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/applicationdb", {
+// mongoose.connect("mongodb://127.0.0.1:27017/applicationdb", {
   useNewUrlParser: true
 });
 const connection = mongoose.connection;
@@ -34,8 +35,8 @@ connection.once("open", function() {
 });
 
 app.use("/", router);
-app.listen(PORT, function() {
-  console.log("Server is running on Port: " + PORT);
+app.listen(port, function() {
+  console.log("Server is running on Port: " + port);
 });
 
 // Setting up route for getting the data
