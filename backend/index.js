@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-console.log("Testing console logging");
 // Setting up Express router
 const router = express.Router();
 
