@@ -14,10 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 8080; // We need Heroku to run the app on their own port
 
 const routes = require('./routes/api');
-const MONGODB_URI = 'mongodb+srv://appuser:apppassword@cluster0-jy8sh.mongodb.net/test?retryWrites=true&w=majority';
+// const MONGODB_URI = 'mongodb+srv://appuser:apppassword@cluster0-jy8sh.mongodb.net/test?retryWrites=true&w=majority';
 
 // First param is link of connection, second param is options to pass
-mongoose.connect(MONGODB_URI || 'mongodb://localhost/applicationdb',{
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/applicationdb',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -35,5 +35,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
 app.use('/api', routes);
+
+// if (process.env.NODE_ENV === 'production') {
+//
+// }
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
