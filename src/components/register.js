@@ -23,11 +23,11 @@ const txtUsername = {
 };
 
 const emlEmail = {
-  name: 'emailAddress',
+  name: 'email',
   type: 'email',
   placeholder: 'ex: john.doe@email.com',
   label: {
-    for: 'emailAddress',
+    for: 'email',
     text: 'Enter Your Email Address'
   },
 };
@@ -58,118 +58,25 @@ class RegisterForm extends React.Component {
     super(props);
     // Storing the value of each field as the state of the form component
     this.state = {
-      userNameValue: '',
-      emlValue: '',
-      pwdValue: ''
-    };
-    // Handling the form changes and the form submission
-    this.handleUserNameChange = this.handleUserNameChange.bind(this);
-    this.handleEmlChange = this.handleEmlChange.bind(this);
-    this.handlePwdChange = this.handlePwdChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  // Setting the username state based on the field value
-  handleUserNameChange(event) {
-    this.setState({userNameValue: event.target.value});
-  }
-  // Setting the email state based on the field value
-  handleEmlChange(event) {
-    this.setState({emlValue: event.target.value});
-  }
-  // Setting the password state based on the field value
-  handlePwdChange(event) {
-    this.setState({pwdValue: event.target.value});
-  }
-  // Handling the form submission
-  handleSubmit(event) {
-    // Displaying the submitted information in the console for debugging
-    console.log('The following information has been submitted:\nUsername: ' + this.state.userNameValue + '\nEmail: ' + this.state.emlValue + '\nPassword: ' + this.state.pwdValue);
-    // Preventing standard form submission
-    event.preventDefault();
-    // Creating a user object based on the values submitted in the form
-    const userObject = {
-        username: this.state.userNameValue,
-        email: this.state.emlValue,
-        password: this.state.pwdValue
-    };
-    // Sending the user object to the server via axios post
-    axios.post("/create", userObject)
-        .then((res) => {
-            console.log(res.data)
-        }).catch((error) => {
-            console.log(error)
-        });
-    // Resetting the form state to blank values
-    this.setState({ userNameValue: '', emlValue: '', pwdValue: '' })
-  }
-
-  render() {
-    return (
-      <form className="loginForm" onSubmit={this.handleSubmit}>
-        <h2>Register</h2>
-        <div className="inputContainer">
-          <label htmlFor={txtUsername.label.for}> {txtUsername.label.text} </label>
-          <input
-            type={txtUsername.type}
-            name={txtUsername.name}
-            placeholder={txtUsername.placeholder}
-            value={this.state.userNameValue}
-            onChange={this.handleUserNameChange}
-          />
-        </div>
-        <div className="inputContainer">
-          <label htmlFor={emlEmail.label.for}> {emlEmail.label.text} </label>
-          <input
-            type={emlEmail.type}
-            name={emlEmail.name}
-            placeholder={emlEmail.placeholder}
-            value={this.state.emlValue}
-            onChange={this.handleEmlChange}
-          />
-        </div>
-        <div className="inputContainer">
-          <label htmlFor={pwdPassword.label.for}> {pwdPassword.label.text} </label>
-          <input
-            type={pwdPassword.type}
-            name={pwdPassword.name}
-            placeholder={pwdPassword.placeholder}
-            value={this.state.pwdValue}
-            onChange={this.handlePwdChange}
-          />
-        </div>
-        <Button
-          type='submit'
-          label='Create Account'
-        />
-      </form>
-    );
-  }
-}
-
-// Creating the user display to view all users in the db for debugging
-class UserDisplay extends React.Component{
-  constructor() {
-    super();
-    // Storing the data from the db in the state
-    this.state = {
+      username: '',
+      email: '',
+      password: '',
       data: [],
       buttonClicked: false
     };
+
     // Getting the list of users
-    this.getUsers = this.getUsers.bind(this);
+    this.displayUsers = this.displayUsers.bind(this);
   }
+
   // Hooking into the component mounting
   componentDidMount() {
     // Getting all information from the db using the axios get method
-    axios.get("/getData").then(res => {
-      this.setState({
-        data: res.data
-      });
-      console.log(res.data)
-    });
+    this.getUsers();
   }
+
   // Setting the state when the button is clicked
-  getUsers() {
+  displayUsers() {
     if (!this.state.buttonClicked) {
       this.setState({
         buttonClicked: true
@@ -177,37 +84,130 @@ class UserDisplay extends React.Component{
     }
   }
 
+  getUsers = () => {
+    axios.get('/api')
+      .then((response) => {
+        const data = response.data;
+        this.setState({data: data});
+        console.log('User data has been received!!');
+      })
+      .catch(() => {
+        alert('Error retrieving data!!');
+      });
+  }
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({
+      // Dynamically passing value
+      [name]: value
+    });
+  };
+
+  submit = (event) => {
+    event.preventDefault();
+
+    const payload = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    axios({
+      url: '/api/save',
+      method: 'POST',
+      data: payload
+    })
+      .then(() => {
+        console.log('New user data has been sent to the server!!');
+        this.resetUserInputs();
+        this.getUsers();
+      })
+      .catch(() => {
+        console.log('Something went wrong in sending the data.');
+      });
+  };
+
+  resetUserInputs = () => {
+    this.setState({
+      username: '',
+      email: '',
+      password: ''
+    })
+  }
+
   render() {
     return (
-      <div className="displayUsersContainer">
-        <button className="" onClick={this.getUsers} >
-          View Existing User Information
-        </button>
-        <div className="displayUsers">
-          {this.state.buttonClicked
-            ? this.state.data.map(data => {
-                return (
-                  <div className="displayedUser">
-                    <h6>
-                      <br/>
-                      <b>name</b> : {data.username}
-                    </h6>
-                    <h6>
-                      <b>password</b> : {data.password}
-                    </h6>
-                    <h6>
-                      <b>email</b> : {data.email}
-                    </h6>
-                    <hr />
-                  </div>
-                );
-              })
-            : null}
+      <div>
+        <form className="loginForm" onSubmit={this.submit}>
+          <h2>Register</h2>
+          <div className="inputContainer">
+            <label htmlFor={txtUsername.label.for}> {txtUsername.label.text} </label>
+            <input
+              type={txtUsername.type}
+              name={txtUsername.name}
+              placeholder={txtUsername.placeholder}
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="inputContainer">
+            <label htmlFor={emlEmail.label.for}> {emlEmail.label.text} </label>
+            <input
+              type={emlEmail.type}
+              name={emlEmail.name}
+              placeholder={emlEmail.placeholder}
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="inputContainer">
+            <label htmlFor={pwdPassword.label.for}> {pwdPassword.label.text} </label>
+            <input
+              type={pwdPassword.type}
+              name={pwdPassword.name}
+              placeholder={pwdPassword.placeholder}
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <Button
+            type='submit'
+            label='Create Account'
+          />
+        </form>
+
+        <div className="displayUsersContainer">
+          <button className="" onClick={this.displayUsers} >
+            View Existing User Information
+          </button>
+          <div className="displayUsers">
+            {this.state.buttonClicked
+              ? this.state.data.map(data => {
+                  return (
+                    <div className="displayedUser">
+                      <h6>
+                        <br/>
+                        <b>name</b> : {data.username}
+                      </h6>
+                      <h6>
+                        <b>password</b> : {data.password}
+                      </h6>
+                      <h6>
+                        <b>email</b> : {data.email}
+                      </h6>
+                      <hr />
+                    </div>
+                  );
+                })
+              : null}
+          </div>
         </div>
       </div>
     );
   }
 }
+
 
 // Creating the Register page component, composed of all other components
 class Register extends React.Component {
@@ -222,7 +222,6 @@ class Register extends React.Component {
         <div className="loginPage">
           <div className="container">
             <RegisterForm />
-            <UserDisplay />
           </div>
         </div>
       </div>
