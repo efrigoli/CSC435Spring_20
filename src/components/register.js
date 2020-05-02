@@ -93,7 +93,7 @@ class RegisterForm extends React.Component {
         password: this.state.pwdValue
     };
     // Sending the user object to the server via axios post
-    axios.post("http://localhost:4000/create", userObject)
+    axios.post("/create", userObject)
         .then((res) => {
             console.log(res.data)
         }).catch((error) => {
@@ -161,7 +161,7 @@ class UserDisplay extends React.Component{
   // Hooking into the component mounting
   componentDidMount() {
     // Getting all information from the db using the axios get method
-    axios.get("http://localhost:4000/getData").then(res => {
+    axios.get("/getData").then(res => {
       this.setState({
         data: res.data
       });
