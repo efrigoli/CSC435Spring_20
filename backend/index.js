@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({
 // Setting up Express router
 const router = express.Router();
 
-
 // Setting up Mongoose connection to local db
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/applicationdb", {
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/applicationdb", {
+mongoose.connect("mongodb://127.0.0.1:27017/applicationdb", {
   useNewUrlParser: true
 });
 const connection = mongoose.connection;
