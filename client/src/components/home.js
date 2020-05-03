@@ -9,6 +9,7 @@
 
 // Importing dependencies
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../index.css';
 import heroImg from '../img/homeHero.jpg';
 import bookList from '../itemLists/bookList.json';
@@ -31,7 +32,7 @@ class Home extends React.Component {
         <div className="fulLWidthContainer checkoutPanel">
           <div className="container">
             <h2>Already have items saved in your cart?</h2>
-            <a className="buttonLink" href="/cart">Checkout Now!</a>
+            <Link to="/cart"><a className="buttonLink">Checkout Now!</a></Link>
           </div>
         </div>
       </div>

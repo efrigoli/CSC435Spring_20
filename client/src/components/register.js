@@ -2,6 +2,7 @@
  * CSC 435 - Advanced Web App Development
  * Created: 04/25/20
  * Last Modified: 04/26/20 - Added a way to display current users in the db for debugging
+ *                05/03/20 - Restructured application again
  */
 
 // Importing dependencies
@@ -84,6 +85,7 @@ class RegisterForm extends React.Component {
     }
   }
 
+  // Getting the data for all users from the db using axios
   getUsers = () => {
     axios.get('/api')
       .then((response) => {
@@ -107,12 +109,14 @@ class RegisterForm extends React.Component {
   submit = (event) => {
     event.preventDefault();
 
+    // Constructing data for the new user object
     const payload = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
 
+    // Saving new user object to the database through axios post
     axios({
       url: '/api/save',
       method: 'POST',
@@ -128,6 +132,7 @@ class RegisterForm extends React.Component {
       });
   };
 
+  // Clearing out field input after form submission
   resetUserInputs = () => {
     this.setState({
       username: '',

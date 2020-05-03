@@ -1,7 +1,7 @@
 /* Elise Frigoli
  * CSC 435 - Advanced Web App Development
- * Created: 04/25/20
- * Last Modified: 04/26/20 - Added create route
+ * Created: 05/02/20
+ * Last Modified: 05/03/20- Added comments
  */
 
 // Importing dependencies
@@ -14,10 +14,13 @@ const app = express();
 const PORT = process.env.PORT || 8080; // We need Heroku to run the app on their own port
 
 const routes = require('./routes/api');
+// Connecting to Mongo Atlas DB
 // const MONGODB_URI = 'mongodb+srv://appuser:apppassword@cluster0-jy8sh.mongodb.net/test?retryWrites=true&w=majority';
 
 // First param is link of connection, second param is options to pass
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/applicationdb',{
+// mongoose.connect(MONGODB_URI || 'mongodb://localhost/applicationdb',{
+
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -36,8 +39,9 @@ app.use(morgan('tiny'));
 
 app.use('/api', routes);
 
-// if (process.env.NODE_ENV === 'production') {
-//
-// }
+// If we are on Heroku, use the build folder
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));

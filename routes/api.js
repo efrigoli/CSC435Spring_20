@@ -1,3 +1,10 @@
+/* Elise Frigoli
+ * CSC 435 - Advanced Web App Development
+ * Created: 05/02/20
+ * Last Modified: 05/03/20- Added comments
+ */
+
+// Importing dependencies
 const express = require("express");
 const router = express.Router();
 const User = require('../models/user');
@@ -37,6 +44,7 @@ router.post('/save', (req, res) => {
 });
 
 router.get('/name', (req, res) => {
+  // Demo data for testing
   const data = {
     username: 'jeremiah',
     age: 5
